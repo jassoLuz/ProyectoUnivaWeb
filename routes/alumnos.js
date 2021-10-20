@@ -4,7 +4,7 @@ var router = express.Router();
 var bd=require('./bd');
 
 router.get('/', function(req, res, next) {
-    bd.query('SELECT id,nombre,apellido,edad FROM usuarios', function(error, results, fields){
+    bd.query('SELECT id,nombre,apellido,edad FROM usuarios2', function(error, results, fields){
         if (error) {            
             console.log('error en el listado');
             return;
@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/getDatosAlumnos', function(req, res, next) {
-    bd.query('SELECT id,nombre,apellido,edad FROM usuarios', function(error, results, fields){
+    bd.query('SELECT id,nombre,apellido,edad FROM usuarios2', function(error, results, fields){
         if (error) {            
             console.log('error en el listado');
             return;
@@ -51,7 +51,7 @@ router.get('/modificar/:id', function(req, res, next) {
 
 	console.log(req.params.id);
 
-	 bd.query('SELECT id,nombre,apellido,edad FROM usuarios WHERE id = '+req.params.id+' ', function(error, results, fields){
+	 bd.query('SELECT id,nombre,apellido,edad FROM usuarios2 WHERE id = '+req.params.id+' ', function(error, results, fields){
         if (error) {            
             console.log('error en el listado');
             return;
@@ -90,7 +90,7 @@ router.post('/operacion', function(req, res, next) {
       	apellido = req.body.apellido;
       	edad = req.body.edad;
 
-        query = "INSERT INTO usuarios (nombre,apellido,edad) VALUES('"+nombre+"','"+apellido+"',"+edad+");";
+        query = "INSERT INTO usuarios2 (nombre,apellido,edad) VALUES('"+nombre+"','"+apellido+"',"+edad+");";
 
      }else if(tipoOperacion == "u"){
      	nombre = req.body.nombre;
@@ -98,11 +98,11 @@ router.post('/operacion', function(req, res, next) {
       	edad = req.body.edad;
       	id = req.body.id;
 
-        query = "UPDATE usuarios SET nombre = '"+nombre+"', apellido = '"+apellido+"', edad="+edad+" WHERE id = "+id+" ";
+        query = "UPDATE usuarios2 SET nombre = '"+nombre+"', apellido = '"+apellido+"', edad="+edad+" WHERE id = "+id+" ";
      }else if(tipoOperacion == "d"){
 
      	id = req.body.id;
-        query = "DELETE FROM usuarios WHERE id = "+id+" ";
+        query = "DELETE FROM usuarios2 WHERE id = "+id+" ";
      }
      //console.log("la consulta es: "+query);
 
